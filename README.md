@@ -2,15 +2,15 @@
 This demonstration will be presented during Jenkins World 2017 in San Francisco, CA on August 29th-31st at CyberArk Booth # 504.
 
 ## What does this demonstrate for CyberArk Conjur?
-* Machine Identity
+* __Machine Identity__
   * By granting a machine identity to the Jenkins Master, we can trust any communication authenticated with it's API Key going forward.  This allows [Summon](https://cyberark.github.io/summon) to use the Jenkins Master identity when reaching out to CyberArk Conjur for the secrets within [secrets.yml](secrets.yml).
-* Role-Based Access Control (RBAC)
+* __Role-Based Access Control (RBAC)__
   * Jenkins Master received it's identity, was added as a Host in Conjur and granted an API Key, and was added to the jenkins/masters Layer (or group of Hosts) to receive the associated Policy ([policy.yml](policy.yml)).
-* On-Demand Secrets Allowing Rotation
+* __On-Demand Secrets Allowing Rotation__
   * By using [Summon](https://cyberark.github.io/summon) rather than hardcoding the credentials, this allows us to retrieve the secrets on-demand allowing CyberArk Conjur to manage and rotate the AWS access keys while still serving out the secrets programatically, as needed.
 
 ## How it works?
-Our JenkinsWorld2017 job in CloudBees Jenkins is tied to this repository.  When the job's build is run, the [sqsPost.py](sqsPost.py) script will be run in a Shell Command build step within Jenkins.  Rather than just calling `python sqsPost.py` to test it in the workspace, we are executing `summon python sqsPost.py` instead.
+Our `JenkinsWorld2017` job in [CloudBees Jenkins](https://www.cloudbees.com) is tied to this repository.  When the job's build is run, the [sqsPost.py](sqsPost.py) script will be run in a Shell Command build step within Jenkins.  Rather than just calling `python sqsPost.py` to test it in the workspace, we are executing `summon python sqsPost.py` instead.
 
 By having `summon` run the `python` provider, we can inject environment variables into `python` that the [sqsPost.py](sqsPost.py) script can reference when it runs.  `summon` will read [secrets.yml](secrets.yml) file and fetch the secret ID referenced within and place it in the given environment variable name in temporary memory.  For example: `ENV_VAR_NAME: !var /id/of/secret`
 
