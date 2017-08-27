@@ -20,7 +20,7 @@ function fetch_machine_identity() {
     --cacert $cert \
     -o src/host.json \
     -H "Authorization: Token token=\"$token\"" \
-    https://ubuntu01/api/host_factories/hosts?id=$hostid
+    $baseurl/api/host_factories/hosts?id=$hostid
   )
 
   if [ $status -eq 201 ]; then
