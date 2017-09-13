@@ -27,6 +27,7 @@ The secrets received in the message in AWS SQS can be checked against the Consol
   * [Jenkins OSS](https://jenkins.io/) or [CloudBees Jenkins](https://www.cloudbees.com/)
   * `sudo apt-get install jq` is needed for parsing JSON response.
   * `sudo apt-get install python27` is needed for testing [sqsPost.py](sqsPost.py).
+  * `curl -L -O https://bootstrap.pypa.io/get-pip.py && python get-pip.py` is needed as a Python module manager.
 * Amazon Web Services (AWS) [Free Tier Account](https://www.amazon.com/ap/signin?openid.assoc_handle=aws&openid.return_to=https%3A%2F%2Fsignin.aws.amazon.com%2Foauth%3Fresponse_type%3Dcode%26client_id%3Darn%253Aaws%253Aiam%253A%253A015428540659%253Auser%252Fawssignupportal%26redirect_uri%3Dhttps%253A%252F%252Fportal.aws.amazon.com%252Fbilling%252Fsignup%253Fnc2%253Dh_ct%2526redirect_url%253Dhttps%25253A%25252F%25252Faws.amazon.com%25252Fregistration-confirmation%2526state%253DhashArgs%252523%2526isauthcode%253Dtrue%26noAuthCookie%3Dtrue&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&action=&disableCorpSignUp=&clientContext=&marketPlaceId=&poolName=&authCookies=&pageId=aws.ssop&siteState=registered%2Cen_US&accountStatusPolicy=P1&sso=&openid.pape.preferred_auth_policies=MultifactorPhysical&openid.pape.max_auth_age=120&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&server=%2Fap%2Fsignin%3Fie%3DUTF8&accountPoolAlias=&forceMobileApp=0&language=en_US&forceMobileLayout=0)
   * Sending messages to Simple Queue Service (SQS) is considered free tier up to 1 million messages.
   * Use caution if planning to exceed 1 million messages within a one-month billing period.
@@ -67,8 +68,9 @@ $ ./identify.sh
 2. Select `New Item` from left sidebar navigation.
 3. Create a new Freestyle Project named `JenkinsWorldDemo`.
 4. Under `Source Code Management`, select `Git` and use this repository forked under your GitHub user account.
-5. Under `Build`, `Add build step` and choose `Execute shell` with the following command: `summon python sqsPost.py`
-6. Save the job.
+5. Under `Build`, `Add build step` and choose `Execute shell` with the following command: `pip install -r requirements.txt`
+6. Click `Add build step` again and choose `Execute shell` with the following command: `summon python sqsPost.py`
+7. Save the job.
 
 ### Install Summon on Jenkins Master
 1. Navigate to [Summon Releases](https://github.com/cyberark/summon/releases) and copy the URL to download the latest `summon-linux-amd64.tar.gz`.
