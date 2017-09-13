@@ -76,7 +76,18 @@ $ ./identify.sh
 ```
 $ curl -L -O https://github.com/cyberark/summon/releases/download/v0.6.5/summon-linux-amd64.tar.gz
 $ tar -xvzf summon-linux-amd64.tar.gz
-$ mv summon /usr/local/lib
+$ mv summon /usr/local/bin
+```
+
+### Install Summon-Conjur Provider on Jenkins Master
+1. Navigate to [Summon-Conjur Releases](https://github.com/cyberark/summon-conjur/releases) and copy the URL to download the latest `summon-conjur-linux-amd64.tar.gz` for your version of Conjur.
+  * As of this writing, v0.3.0 is for Conjur v5 and v0.2.0 is for Conjur v4.
+2. Do the following from the Jenkins Master:
+```
+$ curl -L -O https://github.com/cyberark/summon-conjur/releases/download/0.2.0/summon-conjur-linux-amd64.tar.gz
+$ tar -xvzf summon-conjur-linux-amd64.tar.gz
+$ mkdir -p /usr/local/lib/summon
+$ mv summon-conjur /usr/local/lib/summon
 ```
 
 ### Setup Simple Queue Service (SQS) in Amazon Web Services (AWS)
