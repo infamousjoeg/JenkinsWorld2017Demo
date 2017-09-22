@@ -70,6 +70,10 @@ $ ./identify.sh
 5. Under `Build`, `Add build step` and choose `Execute shell` with the following command: `summon python sqsPost.py`
 6. Save the job.
 
+### Install boto3 for Python 2.7 On Jenkins Master
+1. Do the following from the Docker host:
+`docker exec -u 0 jenkins pip install boto3`
+
 ### Install Summon on Jenkins Master
 1. Navigate to [Summon Releases](https://github.com/cyberark/summon/releases) and copy the URL to download the latest `summon-linux-amd64.tar.gz`.
 2. Do the following from the Jenkins Master:
