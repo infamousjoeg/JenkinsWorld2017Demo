@@ -5,7 +5,7 @@ function main() {
 }
 
 function fetch_secret() {
-	local X=$(conjur variable value jenkins/git/username)
+	local X=$(conjur variable value jenkins/github/username)
 	echo "Secret=$X" 
 }
 
