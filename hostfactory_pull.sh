@@ -18,7 +18,7 @@ function hostfactory_create(){
     local time_hours=$(date +%H)
     local time_minutes=$(date +%M)
     local time_seconds=$(date -d "+ 20 seconds" +%S)
-	  local hostfactory=$(curl -s -k -X POST -H "Authorization: Token token=\"$token\"" "https://docker/api/host_factories/jenkins_factory/tokens?expiration=${date}T${time_hours}%3A${time_minutes}%3A${time_seconds}-05%3A00")
+	  local hostfactory=$(curl -s -k -X POST -H "Authorization: Token token=\"$token\"" "https://docker/api/host_factories/jenkins%2Fjenkins_factory/tokens?expiration=${date}T${time_hours}%3A${time_minutes}%3A${time_seconds}-05%3A00")
     local hostfactory_token=$(echo "$hostfactory" | jq '.[] | .token')
     local hostfactory_expiration=$(echo "$hostfactory" | jq '.[] | .expiration')
     printf "The hostfactory token is: $hostfactory_token\n"
