@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage ('Check Health of Conjur server') {
 			steps {
-				sh 'curl -s -k -i -X GET https://docker/health'
+				sh 'curl -s -k -i -X GET https://jenkins/health'
 			}
 		}
         stage ('Post Secrets to AWS SQS') {
