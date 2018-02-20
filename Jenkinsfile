@@ -11,11 +11,11 @@ pipeline {
 				sh 'curl -s -k -i -X GET https://jenkins/health'
 			}
 		}
-        stage ('Post Secrets to AWS SQS') {
-            steps {
-                sh 'summon python sqsPost.py'
-            }
-        }
+        //stage ('Post Secrets to AWS SQS') {
+        //    steps {
+        //        sh 'summon python sqsPost.py'
+        //    }
+        //}
         stage ('Set Secret Variable via Shell') {
 			steps {
 				sh 'conjur variable values add jenkins/github/username USER-$(date +"%H-%M")'
